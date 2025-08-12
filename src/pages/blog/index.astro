@@ -1,0 +1,32 @@
+---
+import PostPreview from '@/components/PostPreview.astro';
+import { getAllPosts, getUniqueTags } from '@/data/post';
+import Layout from '@/layouts/Layout.astro';
+
+const posts = await getAllPosts()
+const tags = getUniqueTags(posts)
+---
+
+<Layout>
+    <div class="flex flex-col gap-6">
+        <h1 class="text-xl font-semibold text-gray-900">Blog</h1>
+
+        <div class="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+                <a
+                    href={`/tags/${tag}`}
+                    class="text-gray-600 hover:text-gray-900 hover:underline text-sm"
+                >
+                    #{tag}
+                </a>
+            ))}
+        </div>
+
+        <!-- TODO: add pagination -->
+        <div class="flex flex-col gap-2">
+            {posts.map(post => (
+                <PostPreview post={post} />
+            ))}
+        </div>
+    </div>
+</Layout>
