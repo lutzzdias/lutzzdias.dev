@@ -1,0 +1,28 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import Date from '@/components/Date.astro'
+
+interface Props {
+  post: CollectionEntry<'posts'>
+}
+
+const { data: post, id } = Astro.props.post
+const date = post.updatedDate ?? post.publishDate
+---
+
+<div class="flex flex-col gap-1">
+    <a data-astro-prefetch href={`/posts/${id}/`}>
+        <div class="flex justify-between items-center">
+            <h4 class="text-gray-900 font-semibold"># {post.title}</h4>
+            <Date class="text-gray-500" date={date}/>
+        </div>
+        <p class="text-gray-800">
+            {post.description}
+        </p>
+    </a>
+    <div class="flex gap-2 mt-2 text-gray-500">
+        {post.tags.map(tag => (
+            <a href="" class="hover:underline hover:text-gray-600">#{tag}</a>
+        ))}
+    </div>
+</div>
