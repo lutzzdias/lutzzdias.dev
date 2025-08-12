@@ -18,10 +18,14 @@ const posts = await getAllPosts()
         </section>
 
         <section class="flex flex-col gap-4">
-            <h3 class="text-xl font-semibold text-cyan-600"><a href="/blog">Recent posts</a></h3>
-            {posts.map(post => (
-                <PostPreview post={post} />
+            <h2 class="text-xl font-semibold text-gray-900">Recent posts</h2>
+            <!-- Latest 5 posts -->
+            {posts.slice(0, 5).map(post => (
+              <PostPreview post={post} />
             ))}
+            <div>
+                <a href="/blog" class="text-cyan-600 hover:underline underline-offset-2">See all</a>
+            <div>
         </section>
     </div>
 </Layout>
