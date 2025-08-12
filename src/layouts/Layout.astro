@@ -1,6 +1,7 @@
 ---
 import "@/styles/global.css";
-import Navbar from "@/components/Navbar.astro";
+import Navbar from "@/components/layout/Navbar.astro";
+import Footer from "@/components/layout/Footer.astro";
 ---
 
 <!doctype html>
@@ -14,11 +15,12 @@ import Navbar from "@/components/Navbar.astro";
 	</head>
 
 	<body
-		class="flex flex-col gap-y-8 mx-auto  min-h-screen max-w-3xl px-8 py-10 font-mono text-sm font-normal antialiased "
+		class="flex flex-col gap-12 mx-auto  min-h-screen max-w-3xl px-8 py-10 font-mono text-sm font-normal antialiased "
 	>
         <Navbar />
         <main>
             <slot />
         </main>
+        <Footer />
 	</body>
 </html>
