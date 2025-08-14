@@ -1,6 +1,6 @@
 ---
 import PostPreview from '@/components/PostPreview.astro';
-import { getAllPosts, getUniqueTags } from '@/data/post';
+import { getAllPosts, getUniqueTags } from '@/repository/post';
 import Layout from '@/layouts/Layout.astro';
 
 const posts = await getAllPosts()
