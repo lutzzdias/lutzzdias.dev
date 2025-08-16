@@ -22,7 +22,7 @@ const date = post.updatedDate ?? post.publishDate
     </a>
     <div class="flex gap-2 mt-2 text-gray-500">
         {post.tags.map(tag => (
-            <a href="" class="hover:underline hover:text-gray-600">#{tag}</a>
+            <a href={`/tags/${tag}`} class="hover:underline hover:text-gray-600">#{tag}</a>
         ))}
     </div>
 </div>
