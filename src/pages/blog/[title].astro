@@ -17,18 +17,17 @@ export const getStaticPaths = (async () => {
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { post: entry } = Astro.props;
-const { Content } = await render(entry);
+const { Content, remarkPluginFrontmatter } = await render(entry);
 
 const post = entry.data
-// TODO: create remark plugin (https://docs.astro.build/en/recipes/reading-time/)
-const readingTime: string = '12 min';
+const readingTime: string = remarkPluginFrontmatter.readingTime;
 ---
 
 <Layout>
     <article class="flex flex-col grow gap-8">
         <div class="flex flex-col gap-1.5">
-            {post.draft && <span class="text-base text-red-500">(Draft)</span>}
             <h1 class="text-2xl font-semibold">
+                {post.draft && <span class="font-normal text-red-500">(Draft)</span>}
                 {post.title}
             </h1>
             <div class="flex flex-wrap items-center gap-x-3">

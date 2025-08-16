@@ -1,10 +1,10 @@
 ---
 import PostPreview from '@/components/PostPreview.astro';
-import { getAllPosts, getUniqueTags } from '@/repository/post';
+import { getAllPosts, getUniqueTagsWithCounts } from '@/repository/post';
 import Layout from '@/layouts/Layout.astro';
 
 const posts = await getAllPosts()
-const tags = getUniqueTags(posts)
+const tags = getUniqueTagsWithCounts(posts)
 ---
 
 <Layout>
@@ -12,12 +12,12 @@ const tags = getUniqueTags(posts)
         <h1 class="text-xl font-semibold text-gray-900">Blog</h1>
 
         <div class="flex flex-wrap gap-2">
-            {tags.map((tag) => (
+            {tags.map(({ tag, count }) => (
                 <a
                     href={`/tags/${tag}`}
                     class="text-gray-600 hover:text-gray-900 hover:underline text-sm"
                 >
-                    #{tag}
+                    #{tag}({count})
                 </a>
             ))}
         </div>
