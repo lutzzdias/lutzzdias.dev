@@ -14,7 +14,7 @@ const tags = getUniqueTagsWithCounts(posts)
         <div class="flex flex-wrap gap-2">
             {tags.map(({ tag, count }) => (
                 <a
-                    href={`/tags/${tag}`}
+                    href={`${import.meta.env.BASE_URL}/tags/${tag}`}
                     class="text-gray-600 hover:text-gray-900 hover:underline text-sm"
                 >
                     #{tag}({count})

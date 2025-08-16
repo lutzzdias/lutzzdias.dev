@@ -26,7 +26,7 @@ const links = [
                     <a
                         class="px-4 first:pl-0 text-cyan-600 underline-offset-2 hover:underline py-0"
                         data-astro-prefetch
-                        href={link.path}
+                        href={`${import.meta.env.BASE_URL}${link.path}`}
                     >
                         {link.title}
                     </a>

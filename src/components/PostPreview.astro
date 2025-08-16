@@ -11,7 +11,7 @@ const date = post.updatedDate ?? post.publishDate
 ---
 
 <div class="flex flex-col gap-1">
-    <a data-astro-prefetch href={`/blog/${id}/`}>
+    <a data-astro-prefetch href={`${import.meta.env.BASE_URL}/blog/${id}/`}>
         <div class="flex justify-between items-center">
             <h4 class="text-gray-900 font-semibold"># {post.title}</h4>
             <Date class="text-gray-500" date={date}/>
@@ -22,7 +22,7 @@ const date = post.updatedDate ?? post.publishDate
     </a>
     <div class="flex gap-2 mt-2 text-gray-500">
         {post.tags.map(tag => (
-            <a href={`/tags/${tag}`} class="hover:underline hover:text-gray-600">#{tag}</a>
+            <a href={`${import.meta.env.BASE_URL}/tags/${tag}`} class="hover:underline hover:text-gray-600">#{tag}</a>
         ))}
     </div>
 </div>

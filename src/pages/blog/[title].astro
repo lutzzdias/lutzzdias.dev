@@ -53,7 +53,7 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
                         </svg>
 
                         {post.tags.map((tag) => (
-                            <a class="hover:underline underline-offset-1" href={`/tags/${tag}/`}>
+                        <a class="hover:underline underline-offset-1" href={`${import.meta.env.BASE_URL}/tags/${tag}/`}>
                                 #{tag}
                             </a>
                         ))}
