@@ -5,7 +5,6 @@ import { getAllPosts } from "@/repository/post";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import { render } from "astro:content";
 
-
 export const getStaticPaths = (async () => {
 	const posts = await getAllPosts();
 
@@ -26,20 +25,20 @@ const readingTime: string = '12 min';
 ---
 
 <Layout>
-    <article class="grow break-words" data-pagefind-body>
-        <div class="mb-12">
-            {post.draft ? <span class="text-base text-red-500">(Draft)</span> : null}
-            <h1 class="title">
+    <article class="flex flex-col grow gap-8">
+        <div class="flex flex-col gap-1.5">
+            {post.draft && <span class="text-base text-red-500">(Draft)</span>}
+            <h1 class="text-2xl font-semibold">
                 {post.title}
             </h1>
-            <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <div class="flex flex-wrap items-center gap-x-3">
                 <p class="font-semibold">
                     <Date date={post.publishDate} /> /{" "}
                     {readingTime}
                 </p>
                 {
                     post.updatedDate && (
-                        <span class="bg-quote/5 text-quote rounded-lg px-2 py-1">
+                        <span class="bg-cyan-500/15 rounded-lg px-2 py-1">
                             Updated:
                             <Date class="ms-1" date={post.updatedDate} />
                         </span>
@@ -48,25 +47,28 @@ const readingTime: string = '12 min';
             </div>
             {
                 !!post.tags?.length && (
-                    <div class="mt-2">
-                        {post.tags.map((tag, i) => (
-                            <>
-                                {/* prettier-ignore */}
-                                <span class="contents">
-                                    <a class="cactus-link inline-block before:content-['#']" data-pagefind-filter={`tag:${tag}`} href={`/tags/${tag}/`}><span class="sr-only">View more blogs with the tag&nbsp;</span>{tag}
-                                    </a>{i < post.tags.length - 1 && ", "}
-                                </span>
-                            </>
+                    <div class="flex gap-3 items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
+                        </svg>
+
+                        {post.tags.map((tag) => (
+                            <a class="hover:underline underline-offset-1" href={`/tags/${tag}/`}>
+                                #{tag}
+                            </a>
                         ))}
                     </div>
                 )
             }
         </div>
         <div class="flex gap-10 items-start">
+            <!-- TODO: implement Table of Contents -->
             <!-- {!!headings.length && <TOC headings={headings} />} -->
-            <div
-                class="prose prose-sm prose-headings:font-semibold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-gray-600 prose-headings:hover:before:text-accent sm:prose-headings:before:content-['#'] sm:prose-th:before:content-none"
-            >
+            <div class="prose
+                prose-h1:font-bold prose-h1:text-xl
+                prose-a:text-blue-600 prose-img:rounded-xl
+                prose-headings:underline">
                 <Content />
             </div>
         </div>
